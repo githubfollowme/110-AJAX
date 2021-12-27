@@ -7,13 +7,45 @@
     <title>XMLHttpRequest</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .title{
+        border:1px solid rgb(218, 26, 26);
+        width:200px;
+        margin:auto;
+        padding:20px;
+    }
+#list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    #list li{
+        width: 400px;
+        margin: 5px 10px;
+        padding:5px;
+        border: 1px solid #999;
+    }
+/* 分別給以下不同的div不同屬性 */
+    #list li div:child{
+        margin: 0;
+
+    }
+    #list li:hover{
+        margin: 5px 10px;
+        padding:5px;
+        background-color:lightblue;
+        border: 1px solid green;
+    }
+</style>
 </head>
 <body>
     <h1 class="header">XMLHttpRequest</h1>
     <div class="title"></div>
     <h4></h4>
-    <ul></ul>
-
+    <ul id="list"></ul>
+<div style="width:100px;height: 100px;outline-color: blueviolet;">
+    rqyt fas</div>
 </body>
 </html>
 <script>
@@ -27,13 +59,32 @@
 
     //宣告一個XMLHttpRequest物件
 
+let xhr=new XMLHttpRequest;
 
     //建立請求的各項設定及實質內容
 
-
+xhr.open('GET','https://kktix.com/events.json',)
     //建立得到回應時的各項設定及行為
-
+xhr.onload=()=>{
+    let type=xhr.getResponseHeader('Content-Type');
+    let status=xhr.status
+    // let res=xhr.responseText
+    let res=JSON.parse(xhr.responseText);
+    // 注意 res.title是子串喔
+    $(".title").html(res.title)
+    let list="";
+    res.entry.forEach(function(e,i){
+    // console.log(e.title) 測試用
+    // 這裡只能放子串喔
+    // 上影號的好處是 可以直接斷行
+    list=list+`<li>
+        <div>${e.title}</li><div>`;
+    });
+console.log(list)
+$('#list').html(list);
+    console.log(type,status,res);
+}
 
     //送出請求
-
+xhr.send();
     </script>

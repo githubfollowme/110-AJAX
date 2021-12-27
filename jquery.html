@@ -7,13 +7,14 @@
     <title>jQuery</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-      <!-------引入jQuery函式庫------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+    <!-------引入jQuery函式庫------->
 </head>
 <body>
     <h1 class="header">jQuery</h1>
     <div class="title"></div>
     <h4></h4>
-    <ul></ul>
+    <ul id="list"></ul>
     
 </body>
 </html>
@@ -26,18 +27,25 @@
     ********************************************************/
      
     //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
+   $.ajax(
       {
-        url:'',
-        type:'',
-        success:,
+        url:'https://kktix.com/events.json',
+        type:'get',
+        success:(data)=>{
+console.log
+        },
         error:,
         complete:
       }
-    ) */   
+    )   
 
     
     //利用$.get()方法傳送請求並取得回應
+    $.get('https://kktix.com/events.json',(data)=>
+    {$(".title").html(data)
+
+    }
+    )
 
 
   </script>

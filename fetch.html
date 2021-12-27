@@ -7,13 +7,48 @@
     <title>Fetch</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <style>
+
+        .title{
+            border:1px solid black;
+            width:50%;
+            margin:auto;
+            padding:20px;
+        }
+        #list{
+            display:flex;
+            flex-wrap:wrap;
+        }
+        #list li{
+            width:400px;
+            margin:5px 10px;
+            padding:5px;
+            border:1px solid #999;
+        }
+        #list li div:nth-child(1){
+            font-weight:bolder;
+        }
+        #list li div:nth-child(2){
+            color:pink;
+        }
+        #list li div:nth-child(3){
+            font-size:12px;
+            float:right;
+        }
+        #list li:hover{
+            background-color:lightblue;
+            border:1px solid greenyellow;
+        }
+    </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <h1 class="header">Fetch</h1>
     <div class="title"></div>
-    <h4></h4>
-    <ul></ul>
-    
+    <h4>KKTIX</h4>
+    <ul id="list"></ul>
+<div style="width:100px;height: 100px;outline-color: blueviolet;">
+    rqyt fas</div>
 </body>
 </html>
 <script>
@@ -25,9 +60,31 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
+    fetch('https://kktix.com/events.json',{method:'get'})
+.then(function(res){
+    return res.json()
+    //處理回應
 
-
-    //建立回呼函式(call back function)來處理回應時的各項行為
+}).then(function(data){
+    //立回呼函式(call back function)來處理回應時的各項行為
+    $(".title").html(data.title)
+    let list=""
+        data.entry.forEach(function(e,i){
+    // console.log(e.title) 測試用
+    // 這裡只能放子串喔
+    // 上影號的好處是 可以直接斷行
+    list=list+`<li>
+                        <div>${e.title}</div>
+                        <div>${e.summary}</div>
+                        <div>${e.content}</div>
+                        </li>`;
+        });
+        console.log(list)
+        $("#list").html(list)
+        console.log(data)
+    })
+    //處理資料
+    
 
 
     //建立錯誤處理
