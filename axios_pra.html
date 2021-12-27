@@ -1,69 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    .title {
-        border: 1px solid black;
-        width: 50%;
-        margin: auto;
-        padding: 20px;
-    }
-    
-    #list {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
-    #list li {
-        width: 400px;
-        margin: 5px 10px;
-        padding: 5px;
-        border: 1px solid #999;
-    }
-    
-    #list li div:nth-child(1) {
-        font-weight: bolder;
-    }
-    
-    #list li div:nth-child(2) {
-        color: pink;
-    }
-    
-    #list li div:nth-child(3) {
-        font-size: 12px;
-        float: right;
-    }
-    
-    #list li:hover {
-        background-color: lightblue;
-        border: 1px solid greenyellow;
-    }
-</style>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test_axios</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        .title {
+            border: 1px solid black;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+        /* #list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        #list li {
+            width: 400px;
+            margin: 5px 10px;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+        
+        #list li div:nth-child(1) {
+            font-weight: bolder;
+        }
+        
+        #list li div:nth-child(2) {
+            color: pink;
+        }
+        
+        #list li div:nth-child(3) {
+            font-size: 12px;
+            float: right;
+        }
+        
+        #list li:hover {
+            background-color: lightblue;
+            border: 1px solid greenyellow;
+        } */
+    </style>
+
 </head>
 
 <body>
-    <h1 class="heaer">axios</h1>
+    <h1 class="header">axios</h1>
     <div class="title"></div>
-    <ul id="list">
-
-    </ul>
-
+    <ul id="list"></ul>
 </body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    axios.get('https://data.ntpc.gov.tw/api/datasets/61C99F42-8A90-4ADC-9C40-BA9E0EA097AA/json/preview')
-        .then(res) => {
+    axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-8C36EA7F-A9E1-4242-9463-66006731040A&format=JSON')
+        .then((res) => {
             console.log(res)
-            $(".title").html(res.name)
-        };
+                // $(".title").html(res.name)
+        })
 </script>
