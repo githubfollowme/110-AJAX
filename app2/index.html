@@ -99,13 +99,33 @@ function home(){
 
   //載入班級學員列表
   function loadStudents(classnum){
-    $("#students").html("");
+
     $.getJSON("api/load_student.php",{'classroom':classnum},(stulist)=>{
-        console.log(stulist)
+        //console.log(stulist)
         //stulist.forEach(function(stu,idx){})
         //stulist.forEach((stu,idx)=>{})
-        let tr="";
-        stulist.forEach((stu,idx)=>{
+        showData(stulist)
+        $("#classlist").hide();
+        showNav();
+        
+    })
+  }
+
+  //table顯示學生專用函式
+  function showData(array){
+    $("#students").html("");
+    
+    let data;
+    if(typeof array=='object'){
+      data=array
+    }else{
+      data=JSON.parse(array)
+      
+    }
+    
+    
+    let tr="";
+        data.forEach((stu,idx)=>{
           tr=`
               <tr>
                 <td>${stu.uni_id}</td>
@@ -118,11 +138,9 @@ function home(){
           $("#students").append(tr);
         })
 
-        $("#classlist").hide();
-        showNav();
-        
-    })
   }
+
+
   //新增資料的函式
   function create() {
 
@@ -130,7 +148,10 @@ function home(){
 
   //查詢資料的函式
   function query() {
-
+    console.log($("#query").val())
+    $.get("api/query.php",{q:$("#query").val()},(items)=>{
+      showData(items)
+    })
   }
 
   //編輯資料的函式
