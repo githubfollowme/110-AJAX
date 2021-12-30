@@ -60,7 +60,8 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
-    fetch('https://kktix.com/events.json',{method:'get'})
+    // fetch('https://kktix.com/events.json',{method:'get'})
+    fetch('https://data.ntpc.gov.tw/api/datasets/61C99F42-8A90-4ADC-9C40-BA9E0EA097AA/json',{method:'get'})
 .then(function(res){
     return res.json()
     //處理回應
