@@ -14,7 +14,7 @@ class DB{
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,$this->user,$this->pw);
     }
-
+// find主要 是只拉特定資料的出來
     public function find($id){
         $sql="SELECT * FROM $this->table WHERE ";
 
