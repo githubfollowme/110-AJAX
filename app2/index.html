@@ -30,6 +30,8 @@
 
   </div>
 
+  <div id="modal"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
     integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
     crossorigin="anonymous"></script>
@@ -93,6 +95,7 @@ function home(){
       
       $("#nav").prepend(`<input type='text' name='query' id='query' placeholder='輸入學生姓名'>
                          <button onclick='query()'>查詢</button>`);
+      $("#nav").prepend(`<button class='btn btn-success' onclick='create()'>新增學生</button>`);
 
     })
   }
@@ -146,8 +149,27 @@ function home(){
 
   //新增資料的函式
   function create() {
+    $("#modal").load("api/show_blank_form.php",()=>{
+      $("#blankForm").modal("show")
+    })
 
   }
+
+  function add(){
+    let stu={
+        name:$("#name").val(),
+        classroom:$("#classroom").val(),
+        birthday:$("#birthday").val(),
+        seat_num:$("#num").val()
+    }
+
+    $.post("api/insert.php",stu,(res)=>{
+      console.log(res)
+      $("#blankForm").modal("hide")
+      loadStudents($("#classroom").val())
+    })
+  }
+
 
   //查詢資料的函式
   function query() {
