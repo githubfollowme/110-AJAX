@@ -63,7 +63,9 @@ let xhr=new XMLHttpRequest;
 
     //建立請求的各項設定及實質內容
 
-xhr.open('GET','https://kktix.com/events.json',)
+// xhr.open('GET','https://kktix.com/events.json',)
+console.log(chrome.extension);
+xhr.open('GET',chrome.extension.getURL('https://data.ntpc.gov.tw/api/datasets/61C99F42-8A90-4ADC-9C40-BA9E0EA097AA/json'),ture);
     //建立得到回應時的各項設定及行為
 xhr.onload=()=>{
     let type=xhr.getResponseHeader('Content-Type');
