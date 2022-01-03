@@ -61,8 +61,14 @@
     // axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-8C36EA7F-A9E1-4242-9463-66006731040A&format=JSON')
     axios.get('curl.php')
         .then((res) => {
-            console.log(res.data[0].name)
-                // $(".title").html(res.name)
+            console.log(res);
+            console.log(res.data);
+            console.log(res.status);
+            // console.log(res.data[0]);
+            // console.log(res.data[1]);
+            // console.log(res.data[2]);
+            // console.log(res.data[4].name);
+            // $(".title").html(res.name)
         });
 </script>
 

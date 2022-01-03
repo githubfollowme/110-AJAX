@@ -1,5 +1,7 @@
 <?php
+//Q-爲何這裏要設定時間呢
 date_default_timezone_set("Asia/Taipei");
+// 只要有 會員登入的需求 例如購物車之類的 session_start(); 就要擺前面
 session_start();
 
 class DB{
